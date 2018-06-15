@@ -45,3 +45,11 @@ func fire_thruster(strength):
 	#expects a value from -1 to 1
 	self.angular_velocity += strength * thruster_strength / 500
 	
+
+func _on_ShipBody_body_entered(body):
+	#this should handle damage and collecting cannisters
+	if(body.is_in_group("cannister")):
+		body.collect(self)
+		
+		
+	

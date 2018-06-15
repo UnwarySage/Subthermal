@@ -14,6 +14,10 @@ config/name="Temperature"
 run/main_scene="res://level/Main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+SCOREKEEPER="*res://level/ScoreKeeper.gd"
+
 [input]
 
 player_forward=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"unicode":0,"echo":false,"script":null)
