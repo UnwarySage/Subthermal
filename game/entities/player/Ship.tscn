@@ -15,7 +15,7 @@ custom_solver_bias = 0.0
 radius = 7.0
 height = 10.0
 
-[node name="ShipBody" type="RigidBody2D" index="0" groups=[
+[node name="ShipBody" type="RigidBody2D" groups=[
 "has_temperature",
 "ship",
 "player",
