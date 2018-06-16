@@ -1,10 +1,20 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://entities/reticule/Shell.gd" type="Script" id=1]
 [ext_resource path="res://entities/reticule/target1.png" type="Texture" id=2]
 [ext_resource path="res://entities/reticule/target2.png" type="Texture" id=3]
 [ext_resource path="res://entities/reticule/target3.png" type="Texture" id=4]
 [ext_resource path="res://entities/reticule/target4.png" type="Texture" id=5]
+[ext_resource path="res://entities/reticule/explosion1.png" type="Texture" id=6]
+[ext_resource path="res://entities/reticule/explosion10.png" type="Texture" id=7]
+[ext_resource path="res://entities/reticule/explosion2.png" type="Texture" id=8]
+[ext_resource path="res://entities/reticule/explosion3.png" type="Texture" id=9]
+[ext_resource path="res://entities/reticule/explosion4.png" type="Texture" id=10]
+[ext_resource path="res://entities/reticule/explosion5.png" type="Texture" id=11]
+[ext_resource path="res://entities/reticule/explosion6.png" type="Texture" id=12]
+[ext_resource path="res://entities/reticule/explosion7.png" type="Texture" id=13]
+[ext_resource path="res://entities/reticule/explosion8.png" type="Texture" id=14]
+[ext_resource path="res://entities/reticule/explosion9.png" type="Texture" id=15]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -19,6 +29,15 @@ animations = [ {
 
 custom_solver_bias = 0.0
 radius = 20.0
+
+[sub_resource type="SpriteFrames" id=3]
+
+animations = [ {
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
 
 [node name="TargetArea" type="Area2D" index="0"]
 
@@ -49,6 +68,14 @@ playing = true
 
 shape = SubResource( 2 )
 
+[node name="ExplosionSprite" type="AnimatedSprite" parent="." index="3"]
+
+frames = SubResource( 3 )
+animation = "default"
+_sections_unfolded = [ "Visibility" ]
+
 [connection signal="timeout" from="Countdown" to="." method="detonate"]
+
+[connection signal="animation_finished" from="ExplosionSprite" to="." method="_finished"]
 
 
