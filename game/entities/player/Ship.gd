@@ -51,6 +51,9 @@ func _integrate_forces(state):
 	#handle reactions
 	if(direction.y < 0):
 		self.fire_engine(direction.y)
+		$EngineTrail.emitting = true
+	else:
+		$EngineTrail.emitting = false
 	if(direction.x !=0):
 		fire_thruster(direction.x)
 
