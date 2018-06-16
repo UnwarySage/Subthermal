@@ -4,21 +4,34 @@ export (float) var stat_engine_strength
 export (float) var stat_engine_heat
 export (float) var stat_thruster_strength
 export (float) var stat_thermal_buffer
+export (float) var stat_thermal_bleed_rate
 export (int) var stat_max_health
 
 onready var engine_strength = stat_engine_strength
 onready var engine_heat = stat_engine_heat
 onready var thruster_strength = stat_thruster_strength
 onready var thermal_buffer = stat_thermal_buffer
+onready var thermal_bleed_rate = stat_thermal_bleed_rate
 onready var max_health = stat_max_health
 onready var temperature = 0
 onready var damage = 0
+
+signal overheated
 
 func _ready():
 	$EngineTarget.position.y = -engine_strength
 	$ThrusterTarget.position.x = thruster_strength
 	
-	
+func _process(delta):
+	$ThermalGauge.max_value = thermal_buffer
+	$ThermalGauge.value = temperature
+	if (temperature > 0):
+		temperature -= thermal_bleed_rate
+	if (temperature > thermal_buffer):
+		emit_signal("overheated", self.global_position)
+	if (temperature > thermal_buffer * 3):
+		temperature = thermal_buffer * 3 
+		print("maxed heat")
 
 func _integrate_forces(state):
 	self.applied_force = Vector2()
@@ -57,8 +70,10 @@ func _on_ShipBody_body_entered(body):
 	if(body.is_in_group("cannister")):
 		body.collect(self)
 	elif(body.is_in_group("asteroid")):
-		damage+=1
+		accept_damage(1)
+
+
+func accept_damage(damage_amount):
+	damage += damage_amount
 	if (damage >= max_health):
 		self.queue_free()
-		
-	

@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://entities/player/Ship.tscn" type="PackedScene" id=1]
 [ext_resource path="res://entities/cannister/Cannister.tscn" type="PackedScene" id=2]
 [ext_resource path="res://level/Spawner.gd" type="Script" id=3]
 [ext_resource path="res://entities/asteroid/AsteroidTemplate.tscn" type="PackedScene" id=4]
+[ext_resource path="res://level/BarrageHandler.gd" type="Script" id=5]
+[ext_resource path="res://entities/reticule/Reticule.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Curve2D" id=1]
 
@@ -57,5 +59,19 @@ rotate = true
 cubic_interp = true
 loop = true
 lookahead = 4.0
+
+[node name="BarrageHandler" type="Node2D" parent="." index="6"]
+
+script = ExtResource( 5 )
+reticule_scene = ExtResource( 6 )
+
+[node name="BarrageTimer" type="Timer" parent="BarrageHandler" index="0"]
+
+process_mode = 1
+wait_time = 3.0
+one_shot = false
+autostart = false
+
+[connection signal="timeout" from="BarrageHandler/BarrageTimer" to="BarrageHandler" method="_on_BarrageTimer_timeout"]
 
 

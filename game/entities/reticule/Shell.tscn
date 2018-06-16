@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://entities/reticule/Shell.gd" type="Script" id=1]
+[ext_resource path="res://entities/reticule/target1.png" type="Texture" id=2]
+[ext_resource path="res://entities/reticule/target2.png" type="Texture" id=3]
+[ext_resource path="res://entities/reticule/target3.png" type="Texture" id=4]
+[ext_resource path="res://entities/reticule/target4.png" type="Texture" id=5]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 20.0
+
+[node name="TargetArea" type="Area2D"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+
+[node name="Countdown" type="Timer" parent="." index="0"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = true
+
+[node name="TargetSprite" type="AnimatedSprite" parent="." index="1"]
+
+frames = SubResource( 1 )
+animation = "default"
+frame = 1
+playing = true
+
+[node name="ExplosionArea" type="CollisionShape2D" parent="." index="2"]
+
+shape = SubResource( 2 )
+
+[connection signal="timeout" from="Countdown" to="." method="detonate"]
+
+

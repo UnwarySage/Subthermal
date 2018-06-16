@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://entities/player/Ship.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/ship.png" type="Texture" id=2]
+[ext_resource path="res://entities/player/temperature_gauge_outer.png" type="Texture" id=3]
+[ext_resource path="res://entities/player/temperature_gauge_inner.png" type="Texture" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -15,7 +17,7 @@ custom_solver_bias = 0.0
 radius = 7.0
 height = 10.0
 
-[node name="ShipBody" type="RigidBody2D" index="0" groups=[
+[node name="ShipBody" type="RigidBody2D" groups=[
 "has_temperature",
 "ship",
 "player",
@@ -41,10 +43,11 @@ angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Linear" ]
-stat_engine_strength = 50.0
-stat_engine_heat = 1.0
+stat_engine_strength = 150.0
+stat_engine_heat = 0.5
 stat_thruster_strength = 1.0
 stat_thermal_buffer = 15.0
+stat_thermal_bleed_rate = 0.25
 stat_max_health = 3
 
 [node name="ShipBody" type="Sprite" parent="." index="0"]
@@ -53,10 +56,12 @@ texture = ExtResource( 2 )
 
 [node name="ShipShape" type="CollisionShape2D" parent="." index="1"]
 
+visible = false
 shape = SubResource( 1 )
 
 [node name="NoseShape" type="CollisionShape2D" parent="." index="2"]
 
+visible = false
 position = Vector2( 0, 16 )
 shape = SubResource( 2 )
 
@@ -70,6 +75,37 @@ _sections_unfolded = [ "Transform" ]
 
 position = Vector2( 0, 30 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="ThermalGauge" type="TextureProgress" parent="." index="6"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = -15.0
+margin_right = 32.0
+margin_bottom = 17.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 0
+min_value = 0.0
+max_value = 30.0
+step = 1.0
+page = 0.0
+value = 29.0
+exp_edit = false
+rounded = true
+texture_under = null
+texture_over = ExtResource( 3 )
+texture_progress = ExtResource( 4 )
+fill_mode = 3
+radial_fill_degrees = 360.0
+radial_center_offset = Vector2( 0, 0 )
+nine_patch_stretch = false
+_sections_unfolded = [ "Anchor", "Margin", "Rect" ]
 
 [connection signal="body_entered" from="." to="." method="_on_ShipBody_body_entered"]
 
