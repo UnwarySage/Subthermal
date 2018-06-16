@@ -8,7 +8,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 6, 9 )
 
-[node name="CannisterBody" type="RigidBody2D" groups=[
+[node name="CannisterBody" type="RigidBody2D" index="0" groups=[
 "cannister",
 ]]
 
@@ -31,6 +31,7 @@ linear_damp = -1.0
 angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
+type = "cannister"
 
 [node name="CannisterSprite" type="Sprite" parent="." index="0" groups=[
 "cannister",
@@ -41,5 +42,11 @@ texture = ExtResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
 shape = SubResource( 1 )
+
+[node name="VizNote" type="VisibilityNotifier2D" parent="." index="2"]
+
+rect = Rect2( -10, -10, 20, 20 )
+
+[connection signal="screen_exited" from="VizNote" to="." method="_on_VizNote_screen_exited"]
 
 

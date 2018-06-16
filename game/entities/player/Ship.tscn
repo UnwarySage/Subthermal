@@ -36,15 +36,16 @@ contact_monitor = true
 sleeping = false
 can_sleep = true
 linear_velocity = Vector2( 0, 0 )
-linear_damp = 0.01
+linear_damp = 0.1
 angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Linear" ]
-stat_engine_strength = 20.0
+stat_engine_strength = 50.0
 stat_engine_heat = 1.0
 stat_thruster_strength = 1.0
 stat_thermal_buffer = 15.0
+stat_max_health = 3
 
 [node name="ShipBody" type="Sprite" parent="." index="0"]
 
