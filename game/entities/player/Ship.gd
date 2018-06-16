@@ -21,6 +21,7 @@ signal overheated
 func _ready():
 	$EngineTarget.position.y = -engine_strength
 	$ThrusterTarget.position.x = thruster_strength
+	GAMEKEEPER.register_player(self)
 	
 func _process(delta):
 	$ThermalGauge.max_value = thermal_buffer
