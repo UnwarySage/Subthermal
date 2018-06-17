@@ -14,7 +14,7 @@ func spawn_obj(scene):
     # set the mob's direction perpendicular to the path direction
     var direction = $SpawnLocation.rotation + PI/2
     # set the mob's position to a random location
-    spawn.position = $SpawnLocation.position
+    spawn.global_position = $SpawnLocation.global_position
     # add some randomness to the direction
     direction += rand_range(-PI/4, PI/4)
     spawn.rotation = direction
@@ -28,4 +28,4 @@ func scene_from_type(inp_type):
 
 func obj_spawn_requested(type):
 	spawn_obj(scene_from_type(type))
-	print("GAMEKEEPER:spawned " + type)
+	

@@ -8,6 +8,7 @@ export (PackedScene) var reticule_scene
 func _process(delta):
 	for present_node in get_tree().get_nodes_in_group("has_temperature"):
 		present_node.connect("overheated", self, "tracking")
+		present_node.remove_from_group("has_temperature")
 
 func tracking(pos):
 	if(!active_track):

@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://entities/asteroid/AsteroidFactory.gd" type="Script" id=1]
+[ext_resource path="res://entities/asteroid/Asteroid1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://entities/asteroid/Asteroid2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://entities/asteroid/Asteroid3.tscn" type="PackedScene" id=4]
+[ext_resource path="res://entities/asteroid/Asteroid4.tscn" type="PackedScene" id=5]
+
+[node name="AsteroidFactory" type="RigidBody2D"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+mode = 0
+mass = 1.0
+friction = 1.0
+bounce = 0.0
+gravity_scale = 1.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+script = ExtResource( 1 )
+asteroid1 = ExtResource( 2 )
+asteroid2 = ExtResource( 3 )
+asteroid3 = ExtResource( 4 )
+asteroid4 = ExtResource( 5 )
+
+[node name="Timer" type="Timer" parent="." index="0"]
+
+process_mode = 1
+wait_time = 0.01
+one_shot = false
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+

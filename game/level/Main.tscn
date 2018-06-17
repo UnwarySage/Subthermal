@@ -4,7 +4,7 @@
 [ext_resource path="res://entities/player/Ship.tscn" type="PackedScene" id=2]
 [ext_resource path="res://entities/cannister/Cannister.tscn" type="PackedScene" id=3]
 [ext_resource path="res://level/Spawner.gd" type="Script" id=4]
-[ext_resource path="res://entities/asteroid/AsteroidTemplate.tscn" type="PackedScene" id=5]
+[ext_resource path="res://entities/asteroid/AsteroidFactory.tscn" type="PackedScene" id=5]
 [ext_resource path="res://level/BarrageHandler.gd" type="Script" id=6]
 [ext_resource path="res://entities/reticule/Reticule.tscn" type="PackedScene" id=7]
 
@@ -16,7 +16,7 @@ _data = {
 }
 _sections_unfolded = [ "Resource" ]
 
-[node name="level" type="Node2D" index="0"]
+[node name="level" type="Node2D"]
 
 script = ExtResource( 1 )
 
