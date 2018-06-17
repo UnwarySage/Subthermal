@@ -114,7 +114,7 @@ stat_engine_strength = 150.0
 stat_engine_heat = 0.5
 stat_thruster_strength = 1.0
 stat_thermal_buffer = 15.0
-stat_thermal_bleed_rate = 0.25
+stat_thermal_bleed_rate = 0.1
 stat_max_health = 3
 
 [node name="ShipBody" type="Sprite" parent="." index="0"]

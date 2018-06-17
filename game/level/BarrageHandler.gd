@@ -31,3 +31,6 @@ func _on_BarrageTimer_timeout():
 		present_reticule.detonate()
 		present_reticule = null
 		active_track = false
+
+func _ready():
+	active_track = false

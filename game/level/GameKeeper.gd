@@ -2,22 +2,14 @@ extends Node
 
 export (PackedScene) var level_scene = preload("res://level/Main.tscn")
 export (PackedScene) var gate_scene = preload("res://entities/gate/Gate.tscn")
-var spawn_queue = []
+var asteroid_amount = 4
+var asteroid_escalation = 0
 var spawner = null
 var player = null
 var gate = null
 var level = null
 
-
-func obj_exited(type):
-	spawn_queue.append("asteroid")
-
-
 func _process(delta):
-	if(!spawn_queue.empty() ):
-		if(spawner !=null):
-			pass
-			spawner.obj_spawn_requested(spawn_queue.pop_front())
 	if(get_tree().get_nodes_in_group("cannister").size() == 0):
 		print("cannisters cleared")
 		var spawn = gate_scene.instance()
@@ -43,19 +35,15 @@ func new_level():
 	var new_lvl = level_scene.instance()
 	level.queue_free()
 	self.get_parent().add_child(new_lvl)
-	spawn_queue = ["asteroid", "asteroid", "asteroid"]
 	set_process(true)
 	print("level reset")
-	
-func add_objects():
-	spawn_queue.append("asteroid")
 
-func _ready():
-	spawn_queue = ["asteroid", "asteroid", "asteroid"]
-	$EscalationTimer.connect("timeout",self, "add_objects")
-	$EscalationTimer.wait_time = 15.0
+func _on_SpawnTimer_timeout():
+	if(get_tree().get_nodes_in_group("asteroid").size() < asteroid_amount + asteroid_escalation):
+		spawner.obj_spawn_requested("asteroid")
+	$SpawnTimer.start()
+
+func _on_EscalationTimer_timeout():
+	asteroid_escalation +=1
 	$EscalationTimer.start()
-
-
-
-
+	print("asteroid level: " + str(asteroid_escalation+asteroid_amount))
