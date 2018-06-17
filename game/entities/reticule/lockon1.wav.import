@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/lockon1.wav-7226a382c4fdc0c3640c689062da0825.sample"
+
+[deps]
+
+source_file="res://entities/reticule/lockon1.wav"
+source_md5="dbc24d1418cc6089a06464c573ecbdff"
+
+dest_files=[ "res://.import/lockon1.wav-7226a382c4fdc0c3640c689062da0825.sample" ]
+dest_md5="4bcb8a289bd1343992084bdf0587828e"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

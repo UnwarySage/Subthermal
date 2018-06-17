@@ -17,6 +17,7 @@ func _physics_process(delta):
 		player.emit_signal("mass_updated", player.stored_mass)
 		if(!Input.is_action_pressed("player_deploy_mesh")):
 			$MeshAnim.play("pack")
+			$DeploySound.play()
 			active = false
 			$RepairTimer.stop()
 
@@ -51,4 +52,5 @@ func _on_RepairTimer_timeout():
 			player.damage -=1
 			player.stored_mass =0
 			player.emit_signal("life_updated",player.max_health - player.damage)
+			$RepairSound.play()
 	

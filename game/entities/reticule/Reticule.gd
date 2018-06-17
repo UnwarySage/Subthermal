@@ -9,6 +9,7 @@ var target_velocity = null
 
 func _ready():
 	_set_diameter(max_viz_distance)
+	
 
 func increment_lock():
 	present_lock += lock_rate

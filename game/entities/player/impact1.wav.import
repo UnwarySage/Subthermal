@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/impact1.wav-dca7067d65a1a59fc901ef7bb7c0b53c.sample"
+
+[deps]
+
+source_file="res://entities/player/impact1.wav"
+source_md5="33b3c5d360190c115d6f0a00632c3e59"
+
+dest_files=[ "res://.import/impact1.wav-dca7067d65a1a59fc901ef7bb7c0b53c.sample" ]
+dest_md5="aaf500cd43b8e4120f51bccadf597a62"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

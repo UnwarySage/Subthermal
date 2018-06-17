@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://entities/player/HeatMesh.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/ship_heat_mesh.png" type="Texture" id=2]
+[ext_resource path="res://entities/player/repair1.wav" type="AudioStream" id=3]
+[ext_resource path="res://entities/player/deploy_mesh.wav" type="AudioStream" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -106,7 +108,7 @@ tracks/3/keys = {
 "values": [ true, false ]
 }
 
-[node name="MeshArea" type="Area2D" index="0"]
+[node name="MeshArea" type="Area2D"]
 
 show_behind_parent = true
 rotation = 0.242407
@@ -149,6 +151,26 @@ process_mode = 1
 wait_time = 7.0
 one_shot = false
 autostart = false
+
+[node name="RepairSound" type="AudioStreamPlayer2D" parent="." index="4"]
+
+stream = ExtResource( 3 )
+volume_db = 0.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="DeploySound" type="AudioStreamPlayer2D" parent="." index="5"]
+
+stream = ExtResource( 4 )
+volume_db = 0.0
+autoplay = true
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
 
 [connection signal="body_entered" from="." to="." method="_on_MeshArea_body_entered"]
 

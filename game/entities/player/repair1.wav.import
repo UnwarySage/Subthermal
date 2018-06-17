@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/repair1.wav-06b83156401ae41ab6fa0b8481cf882a.sample"
+
+[deps]
+
+source_file="res://entities/player/repair1.wav"
+source_md5="e1f9094ef55d721160636e5cb177f8f3"
+
+dest_files=[ "res://.import/repair1.wav-06b83156401ae41ab6fa0b8481cf882a.sample" ]
+dest_md5="f3afaa5ddb4e2d45ee2e48ed4322a040"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

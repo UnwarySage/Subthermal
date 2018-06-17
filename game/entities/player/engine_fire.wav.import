@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/engine_fire.wav-bb10db2a3fc35106435af66ca8e4f9fd.sample"
+
+[deps]
+
+source_file="res://entities/player/engine_fire.wav"
+source_md5="542d557c83bed05a403aeda819a487d8"
+
+dest_files=[ "res://.import/engine_fire.wav-bb10db2a3fc35106435af66ca8e4f9fd.sample" ]
+dest_md5="2d9906f86154bfd981d83d86cd3be08d"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

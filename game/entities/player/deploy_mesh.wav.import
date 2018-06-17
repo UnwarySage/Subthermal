@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/deploy_mesh.wav-ba3df4004c9e88809c57244519557ff6.sample"
+
+[deps]
+
+source_file="res://entities/player/deploy_mesh.wav"
+source_md5="1c13e32b1f4e86f6ceb1e0d8f485ae6b"
+
+dest_files=[ "res://.import/deploy_mesh.wav-ba3df4004c9e88809c57244519557ff6.sample" ]
+dest_md5="9d7c10356c3e8d78cd607098b8da526c"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

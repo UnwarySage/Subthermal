@@ -17,10 +17,10 @@ onready var thermal_bleed_rate = stat_thermal_bleed_rate
 onready var max_health = stat_max_health
 onready var max_mass = stat_max_mass
 onready var temperature = 0
-onready var damage = 1
+onready var damage = 0
 onready var immobile = false
 onready var dead = false
-onready var stored_mass = 60
+onready var stored_mass = 0
 
 signal overheated
 signal heat_updated
@@ -88,6 +88,8 @@ func fire_engine(strength):
 	var pos = ($EngineTarget.global_position - self.global_position)
 	self.applied_force= pos * -1
 	self.temperature += engine_heat
+	if(!$EngineSound.playing):
+		$EngineSound.play()
 
 
 func fire_thruster(strength):
@@ -107,10 +109,12 @@ func _on_ShipBody_body_entered(body):
 func accept_damage(damage_amount):
 	damage += damage_amount
 	emit_signal("life_updated", max_health-damage)
+	$HitSound.play()
 	if (damage >= max_health and !dead):
 		emit_signal("player_died")
 		dead = true
 		$DeathTimer.start()
+		$DeathSound.play()
 
 
 func _on_DeathTimer_timeout():
