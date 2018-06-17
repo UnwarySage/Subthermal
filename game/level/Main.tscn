@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://level/Main.gd" type="Script" id=1]
-[ext_resource path="res://entities/player/Ship.tscn" type="PackedScene" id=2]
-[ext_resource path="res://entities/cannister/Cannister.tscn" type="PackedScene" id=3]
+[ext_resource path="res://entities/cannister/Cannister.tscn" type="PackedScene" id=2]
+[ext_resource path="res://entities/player/Ship.tscn" type="PackedScene" id=3]
 [ext_resource path="res://level/Spawner.gd" type="Script" id=4]
 [ext_resource path="res://entities/asteroid/AsteroidFactory.tscn" type="PackedScene" id=5]
 [ext_resource path="res://level/BarrageHandler.gd" type="Script" id=6]
@@ -16,27 +16,25 @@ _data = {
 }
 _sections_unfolded = [ "Resource" ]
 
-[node name="level" type="Node2D"]
+[node name="level" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
+screen_size = Vector2( 1024, 600 )
+cannister_scene = ExtResource( 2 )
+cannister_spawn_margin = 60
 
-[node name="Player" parent="." index="0" instance=ExtResource( 2 )]
+[node name="LevelSweeper" type="Position2D" parent="." index="0"]
+
+[node name="Player" parent="." index="1" instance=ExtResource( 3 )]
 
 position = Vector2( 539.047, 390.649 )
 stat_thruster_strength = 65.0
-
-[node name="CannisterBody" parent="." index="1" instance=ExtResource( 3 )]
-
-position = Vector2( 730, 379 )
-linear_velocity = Vector2( 0, 80 )
-_sections_unfolded = [ "Linear" ]
-type = null
 
 [node name="SpawnBorder" type="Path2D" parent="." index="2"]
 
 curve = SubResource( 1 )
 script = ExtResource( 4 )
-cannister = ExtResource( 3 )
+cannister = ExtResource( 2 )
 asteroid = ExtResource( 5 )
 
 [node name="SpawnLocation" type="PathFollow2D" parent="SpawnBorder" index="0"]
