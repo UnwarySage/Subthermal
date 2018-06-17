@@ -1,4 +1,4 @@
-extends Timer
+extends Node
 
 export (PackedScene) var level_scene = preload("res://level/Main.tscn")
 export (PackedScene) var gate_scene = preload("res://entities/gate/Gate.tscn")
@@ -52,9 +52,9 @@ func add_objects():
 
 func _ready():
 	spawn_queue = ["asteroid", "asteroid", "asteroid"]
-	self.connect("timeout",self, "add_objects")
-	self.wait_time = 15.0
-	self.start()
+	$EscalationTimer.connect("timeout",self, "add_objects")
+	$EscalationTimer.wait_time = 15.0
+	$EscalationTimer.start()
 
 
 

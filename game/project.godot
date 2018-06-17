@@ -17,7 +17,7 @@ config/icon="res://icon.png"
 [autoload]
 
 SCOREKEEPER="*res://level/ScoreKeeper.gd"
-GAMEKEEPER="*res://level/GameKeeper.gd"
+GAMEKEEPER="*res://level/GameKeeper.tscn"
 
 [input]
 

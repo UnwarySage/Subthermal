@@ -8,7 +8,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 6, 9 )
 
-[node name="CannisterBody" type="RigidBody2D" groups=[
+[node name="CannisterBody" type="RigidBody2D" index="0" groups=[
 "cannister",
 ]]
 
@@ -45,7 +45,9 @@ shape = SubResource( 1 )
 
 [node name="VizNote" type="VisibilityNotifier2D" parent="." index="2"]
 
-rect = Rect2( -10, -10, 20, 20 )
+position = Vector2( 0, 8.9407e-08 )
+rect = Rect2( -1, -1, 2, 2 )
+_sections_unfolded = [ "Transform" ]
 
 [connection signal="screen_exited" from="VizNote" to="." method="_on_VizNote_screen_exited"]
 

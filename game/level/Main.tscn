@@ -28,24 +28,11 @@ stat_thruster_strength = 65.0
 [node name="CannisterBody" parent="." index="1" instance=ExtResource( 3 )]
 
 position = Vector2( 730, 379 )
+linear_velocity = Vector2( 0, 80 )
+_sections_unfolded = [ "Linear" ]
 type = null
 
-[node name="CannisterBody2" parent="." index="2" instance=ExtResource( 3 )]
-
-position = Vector2( 178, 329 )
-type = null
-
-[node name="CannisterBody3" parent="." index="3" instance=ExtResource( 3 )]
-
-position = Vector2( 782, 255 )
-type = null
-
-[node name="CannisterBody4" parent="." index="4" instance=ExtResource( 3 )]
-
-position = Vector2( 626, 297 )
-type = null
-
-[node name="SpawnBorder" type="Path2D" parent="." index="5"]
+[node name="SpawnBorder" type="Path2D" parent="." index="2"]
 
 curve = SubResource( 1 )
 script = ExtResource( 4 )
@@ -62,7 +49,7 @@ cubic_interp = true
 loop = true
 lookahead = 4.0
 
-[node name="BarrageHandler" type="Node2D" parent="." index="6"]
+[node name="BarrageHandler" type="Node2D" parent="." index="3"]
 
 script = ExtResource( 6 )
 reticule_scene = ExtResource( 7 )
