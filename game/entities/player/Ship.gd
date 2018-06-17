@@ -80,4 +80,4 @@ func _on_ShipBody_body_entered(body):
 func accept_damage(damage_amount):
 	damage += damage_amount
 	if (damage >= max_health):
-		self.queue_free()
+		GAMEKEEPER.new_level()
