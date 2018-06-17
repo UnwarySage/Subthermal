@@ -1,11 +1,12 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://entities/player/Ship.tscn" type="PackedScene" id=1]
-[ext_resource path="res://entities/cannister/Cannister.tscn" type="PackedScene" id=2]
-[ext_resource path="res://level/Spawner.gd" type="Script" id=3]
-[ext_resource path="res://entities/asteroid/AsteroidTemplate.tscn" type="PackedScene" id=4]
-[ext_resource path="res://level/BarrageHandler.gd" type="Script" id=5]
-[ext_resource path="res://entities/reticule/Reticule.tscn" type="PackedScene" id=6]
+[ext_resource path="res://level/Main.gd" type="Script" id=1]
+[ext_resource path="res://entities/player/Ship.tscn" type="PackedScene" id=2]
+[ext_resource path="res://entities/cannister/Cannister.tscn" type="PackedScene" id=3]
+[ext_resource path="res://level/Spawner.gd" type="Script" id=4]
+[ext_resource path="res://entities/asteroid/AsteroidTemplate.tscn" type="PackedScene" id=5]
+[ext_resource path="res://level/BarrageHandler.gd" type="Script" id=6]
+[ext_resource path="res://entities/reticule/Reticule.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Curve2D" id=1]
 
@@ -15,30 +16,32 @@ _data = {
 }
 _sections_unfolded = [ "Resource" ]
 
-[node name="level" type="Node2D"]
+[node name="level" type="Node2D" index="0"]
 
-[node name="Player" parent="." index="0" instance=ExtResource( 1 )]
+script = ExtResource( 1 )
+
+[node name="Player" parent="." index="0" instance=ExtResource( 2 )]
 
 position = Vector2( 539.047, 390.649 )
 _sections_unfolded = [ "Linear", "Transform" ]
 stat_thruster_strength = 65.0
 
-[node name="CannisterBody" parent="." index="1" instance=ExtResource( 2 )]
+[node name="CannisterBody" parent="." index="1" instance=ExtResource( 3 )]
 
 position = Vector2( 730, 379 )
 type = null
 
-[node name="CannisterBody2" parent="." index="2" instance=ExtResource( 2 )]
+[node name="CannisterBody2" parent="." index="2" instance=ExtResource( 3 )]
 
 position = Vector2( 178, 329 )
 type = null
 
-[node name="CannisterBody3" parent="." index="3" instance=ExtResource( 2 )]
+[node name="CannisterBody3" parent="." index="3" instance=ExtResource( 3 )]
 
 position = Vector2( 782, 255 )
 type = null
 
-[node name="CannisterBody4" parent="." index="4" instance=ExtResource( 2 )]
+[node name="CannisterBody4" parent="." index="4" instance=ExtResource( 3 )]
 
 position = Vector2( 626, 297 )
 type = null
@@ -46,9 +49,9 @@ type = null
 [node name="SpawnBorder" type="Path2D" parent="." index="5"]
 
 curve = SubResource( 1 )
-script = ExtResource( 3 )
-cannister = ExtResource( 2 )
-asteroid = ExtResource( 4 )
+script = ExtResource( 4 )
+cannister = ExtResource( 3 )
+asteroid = ExtResource( 5 )
 
 [node name="SpawnLocation" type="PathFollow2D" parent="SpawnBorder" index="0"]
 
@@ -62,8 +65,8 @@ lookahead = 4.0
 
 [node name="BarrageHandler" type="Node2D" parent="." index="6"]
 
-script = ExtResource( 5 )
-reticule_scene = ExtResource( 6 )
+script = ExtResource( 6 )
+reticule_scene = ExtResource( 7 )
 
 [node name="BarrageTimer" type="Timer" parent="BarrageHandler" index="0"]
 

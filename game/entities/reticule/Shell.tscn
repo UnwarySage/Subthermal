@@ -39,7 +39,7 @@ animations = [ {
 "speed": 10.0
 } ]
 
-[node name="TargetArea" type="Area2D" index="0"]
+[node name="TargetArea" type="Area2D"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -61,7 +61,7 @@ autostart = true
 
 frames = SubResource( 1 )
 animation = "default"
-frame = 2
+frame = 3
 playing = true
 
 [node name="ExplosionArea" type="CollisionShape2D" parent="." index="2"]
