@@ -106,7 +106,7 @@ tracks/3/keys = {
 "values": [ true, false ]
 }
 
-[node name="MeshArea" type="Area2D"]
+[node name="MeshArea" type="Area2D" index="0"]
 
 show_behind_parent = true
 rotation = 0.242407
@@ -143,6 +143,19 @@ anims/deploy = SubResource( 2 )
 anims/pack = SubResource( 3 )
 blend_times = [  ]
 
+[node name="RepairTimer" type="Timer" parent="." index="3"]
+
+process_mode = 1
+wait_time = 7.0
+one_shot = false
+autostart = false
+
+[connection signal="body_entered" from="." to="." method="_on_MeshArea_body_entered"]
+
+[connection signal="body_exited" from="." to="." method="_on_MeshArea_body_exited"]
+
 [connection signal="animation_finished" from="MeshAnim" to="." method="_on_MeshAnim_animation_finished"]
+
+[connection signal="timeout" from="RepairTimer" to="." method="_on_RepairTimer_timeout"]
 
 

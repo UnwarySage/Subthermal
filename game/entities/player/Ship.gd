@@ -17,10 +17,10 @@ onready var thermal_bleed_rate = stat_thermal_bleed_rate
 onready var max_health = stat_max_health
 onready var max_mass = stat_max_mass
 onready var temperature = 0
-onready var damage = 0
+onready var damage = 1
 onready var immobile = false
 onready var dead = false
-onready var stored_mass = 8
+onready var stored_mass = 60
 
 signal overheated
 signal heat_updated
@@ -44,6 +44,10 @@ func _process(delta):
 	if (temperature > thermal_buffer * 3):
 		temperature = thermal_buffer * 3 
 	emit_signal("heat_updated", temperature)
+	
+	#handle mass
+	if (stored_mass >= max_mass):
+		stored_mass = max_mass
 
 func _integrate_forces(state):
 	self.applied_force = Vector2()
