@@ -23,7 +23,6 @@ script = ExtResource( 1 )
 [node name="Player" parent="." index="0" instance=ExtResource( 2 )]
 
 position = Vector2( 539.047, 390.649 )
-_sections_unfolded = [ "Linear", "Transform" ]
 stat_thruster_strength = 65.0
 
 [node name="CannisterBody" parent="." index="1" instance=ExtResource( 3 )]

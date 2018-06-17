@@ -7,10 +7,10 @@ path="res://.import/temperature_gauge_inner.png-d473ed985638c0a9a1e75e35907bdb1b
 [deps]
 
 source_file="res://entities/player/temperature_gauge_inner.png"
-source_md5="44d85dcac0d5317e104865e84b4b1252"
+source_md5="164a8c5c2e1091bd48e68ef56e07c20e"
 
 dest_files=[ "res://.import/temperature_gauge_inner.png-d473ed985638c0a9a1e75e35907bdb1b.stex" ]
-dest_md5="084559daf660026b9736f7cc6844e08b"
+dest_md5="93dcc04a7a302a42dee696d15ffba48e"
 
 [params]
 

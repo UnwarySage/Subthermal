@@ -17,15 +17,16 @@ onready var temperature = 0
 onready var damage = 0
 
 signal overheated
+signal heat_updated
+signal life_updated
 
 func _ready():
 	$EngineTarget.position.y = -engine_strength
 	$ThrusterTarget.position.x = thruster_strength
 	GAMEKEEPER.register_player(self)
+	emit_signal("life_updated", max_health-damage)
 	
 func _process(delta):
-	$ThermalGauge.max_value = thermal_buffer
-	$ThermalGauge.value = temperature
 	if (temperature > 0):
 		temperature -= thermal_bleed_rate
 	if (temperature > thermal_buffer):
@@ -33,6 +34,7 @@ func _process(delta):
 	if (temperature > thermal_buffer * 3):
 		temperature = thermal_buffer * 3 
 		print("maxed heat")
+	emit_signal("heat_updated", temperature)
 
 func _integrate_forces(state):
 	self.applied_force = Vector2()
@@ -79,5 +81,6 @@ func _on_ShipBody_body_entered(body):
 
 func accept_damage(damage_amount):
 	damage += damage_amount
+	emit_signal("life_updated", max_health-damage)
 	if (damage >= max_health):
 		GAMEKEEPER.new_level()

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/temperature_gauge_outer.png-fbcafda7f8343e60b95b64efa9034e99.stex"
+path="res://.import/ship_ui_life.png-0cd94e442fcaad2d252240d7d20aa82f.stex"
 
 [deps]
 
-source_file="res://entities/player/temperature_gauge_outer.png"
-source_md5="1625f8711bf2b855b8027568b091bd88"
+source_file="res://entities/player/ship_ui_life.png"
+source_md5="66c9430f5ff21904bec670a584efd403"
 
-dest_files=[ "res://.import/temperature_gauge_outer.png-fbcafda7f8343e60b95b64efa9034e99.stex" ]
-dest_md5="f1cf6df74f94be5a2221e73cb3063eba"
+dest_files=[ "res://.import/ship_ui_life.png-0cd94e442fcaad2d252240d7d20aa82f.stex" ]
+dest_md5="8472d386bdeb73db45098d6dbedf99b2"
 
 [params]
 

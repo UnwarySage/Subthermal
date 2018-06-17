@@ -12,5 +12,4 @@ func _on_Timer_timeout():
 	chosen.linear_velocity = self.linear_velocity
 	chosen.global_position = self.global_position
 	chosen.rotation = self.rotation
-	print(self.global_position)
 	self.queue_free()

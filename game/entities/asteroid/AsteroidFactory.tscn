@@ -6,7 +6,7 @@
 [ext_resource path="res://entities/asteroid/Asteroid3.tscn" type="PackedScene" id=4]
 [ext_resource path="res://entities/asteroid/Asteroid4.tscn" type="PackedScene" id=5]
 
-[node name="AsteroidFactory" type="RigidBody2D"]
+[node name="AsteroidFactory" type="RigidBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 1
