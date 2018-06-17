@@ -51,3 +51,6 @@ func _on_EscalationTimer_timeout():
 	asteroid_escalation +=1
 	$EscalationTimer.start()
 	print("asteroid level: " + str(asteroid_escalation+asteroid_amount))
+	
+func _ready():
+	randomize()

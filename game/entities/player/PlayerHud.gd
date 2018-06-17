@@ -17,4 +17,6 @@ func adjust_life_icons(new_amount):
 		var child = life_icon_scene.instance()
 		$LifeContainer.add_child(child)
 
-func _physics_process(delta):
+func _on_ShipBody_mass_updated(new_val):
+	$HBoxContainer/MassGauge.value = new_val
+	$HBoxContainer/MassGauge.max_value = self.get_parent().get_parent().max_mass

@@ -1,10 +1,12 @@
 extends RigidBody2D
 
+export (PackedScene) var heat_mesh_scene
 export (float) var stat_engine_strength
 export (float) var stat_engine_heat
 export (float) var stat_thruster_strength
 export (float) var stat_thermal_buffer
 export (float) var stat_thermal_bleed_rate
+export (float) var stat_max_mass
 export (int) var stat_max_health
 
 onready var engine_strength = stat_engine_strength
@@ -13,13 +15,17 @@ onready var thruster_strength = stat_thruster_strength
 onready var thermal_buffer = stat_thermal_buffer
 onready var thermal_bleed_rate = stat_thermal_bleed_rate
 onready var max_health = stat_max_health
+onready var max_mass = stat_max_mass
 onready var temperature = 0
 onready var damage = 0
+onready var immobile = false
 onready var dead = false
+onready var stored_mass = 8
 
 signal overheated
 signal heat_updated
 signal life_updated
+signal mass_updated
 signal player_died
 
 func _ready():
@@ -27,6 +33,7 @@ func _ready():
 	$ThrusterTarget.position.x = thruster_strength
 	GAMEKEEPER.register_player(self)
 	emit_signal("life_updated", max_health-damage)
+	emit_signal("mass_updated", stored_mass)
 	print("ship spawned")
 	
 func _process(delta):
@@ -53,6 +60,8 @@ func _integrate_forces(state):
 		direction.x += 1
 	if(dead):
 		direction = Vector2()
+	if (immobile):
+		direction.y = 0
 	#handle reactions
 	if(direction.y < 0):
 		self.fire_engine(direction.y)
@@ -61,6 +70,14 @@ func _integrate_forces(state):
 		$EngineTrail.emitting = false
 	if(direction.x !=0):
 		fire_thruster(direction.x)
+
+func _physics_process(delta):
+	#handle deploying mass_net
+	if(Input.is_action_just_pressed("player_deploy_mesh")):
+		immobile = true
+		var spawn = heat_mesh_scene.instance()
+		self.add_child(spawn)
+		spawn.player = self
 
 
 func fire_engine(strength):
@@ -78,6 +95,7 @@ func _on_ShipBody_body_entered(body):
 	#this should handle damage and collecting cannisters
 	if(body.is_in_group("cannister")):
 		body.collect(self)
+		self.temperature += 3
 	elif(body.is_in_group("asteroid")):
 		accept_damage(1)
 
