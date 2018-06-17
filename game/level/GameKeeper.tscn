@@ -4,7 +4,7 @@
 [ext_resource path="res://level/Main.tscn" type="PackedScene" id=2]
 [ext_resource path="res://entities/gate/Gate.tscn" type="PackedScene" id=3]
 
-[node name="GameKeeper" type="Node" index="0"]
+[node name="GameKeeper" type="Node"]
 
 script = ExtResource( 1 )
 level_scene = ExtResource( 2 )

@@ -39,8 +39,9 @@ animations = [ {
 "speed": 10.0
 } ]
 
-[node name="TargetArea" type="Area2D"]
+[node name="TargetArea" type="Area2D" index="0"]
 
+z_index = 2
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -49,6 +50,7 @@ angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
+_sections_unfolded = [ "Z Index" ]
 
 [node name="Countdown" type="Timer" parent="." index="0"]
 
@@ -61,7 +63,6 @@ autostart = true
 
 frames = SubResource( 1 )
 animation = "default"
-frame = 3
 playing = true
 
 [node name="ExplosionArea" type="CollisionShape2D" parent="." index="2"]

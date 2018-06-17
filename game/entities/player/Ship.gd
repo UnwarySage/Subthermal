@@ -15,16 +15,19 @@ onready var thermal_bleed_rate = stat_thermal_bleed_rate
 onready var max_health = stat_max_health
 onready var temperature = 0
 onready var damage = 0
+onready var dead = false
 
 signal overheated
 signal heat_updated
 signal life_updated
+signal player_died
 
 func _ready():
 	$EngineTarget.position.y = -engine_strength
 	$ThrusterTarget.position.x = thruster_strength
 	GAMEKEEPER.register_player(self)
 	emit_signal("life_updated", max_health-damage)
+	print("ship spawned")
 	
 func _process(delta):
 	if (temperature > 0):
@@ -33,7 +36,6 @@ func _process(delta):
 		emit_signal("overheated", self.global_position)
 	if (temperature > thermal_buffer * 3):
 		temperature = thermal_buffer * 3 
-		print("maxed heat")
 	emit_signal("heat_updated", temperature)
 
 func _integrate_forces(state):
@@ -49,7 +51,8 @@ func _integrate_forces(state):
 		direction.x -= 1
 	if(Input.is_action_pressed("player_turn_right")):
 		direction.x += 1
-	
+	if(dead):
+		direction = Vector2()
 	#handle reactions
 	if(direction.y < 0):
 		self.fire_engine(direction.y)
@@ -82,5 +85,15 @@ func _on_ShipBody_body_entered(body):
 func accept_damage(damage_amount):
 	damage += damage_amount
 	emit_signal("life_updated", max_health-damage)
-	if (damage >= max_health):
-		GAMEKEEPER.new_level()
+	if (damage >= max_health and !dead):
+		emit_signal("player_died")
+		dead = true
+		$DeathTimer.start()
+
+
+func _on_DeathTimer_timeout():
+	GAMEKEEPER.new_level()
+
+
+func _on_VisibilityNotifier2D_screen_exited():
+	accept_damage(16)

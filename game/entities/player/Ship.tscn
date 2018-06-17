@@ -170,6 +170,7 @@ _sections_unfolded = [ "Drawing", "Process Material", "Transform", "Z Index" ]
 
 [node name="Follower" parent="." index="7" instance=ExtResource( 3 )]
 
+editor/display_folded = true
 z_index = -1
 _sections_unfolded = [ "Visibility", "Z Index" ]
 
@@ -329,10 +330,25 @@ radial_center_offset = Vector2( 0, 0 )
 nine_patch_stretch = false
 _sections_unfolded = [ "Anchor", "Margin", "Rect", "Textures" ]
 
+[node name="DeathTimer" type="Timer" parent="." index="8"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="." index="9"]
+
+rect = Rect2( -10, -10, 20, 20 )
+
 [connection signal="body_entered" from="." to="." method="_on_ShipBody_body_entered"]
 
 [connection signal="heat_updated" from="." to="Follower/VBoxContainer" method="_on_ShipBody_heat_updated"]
 
 [connection signal="life_updated" from="." to="Follower/VBoxContainer" method="_on_ShipBody_life_updated"]
+
+[connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]
+
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
 
 

@@ -9,6 +9,8 @@ var player = null
 var gate = null
 var level = null
 
+signal new_player
+
 func _process(delta):
 	if(get_tree().get_nodes_in_group("cannister").size() == 0):
 		print("cannisters cleared")
@@ -25,6 +27,8 @@ func register_spawner(new_spawner):
 func register_player(new_player):
 	player = new_player
 	print("GAMEKEEPER: player registered")
+	emit_signal("new_player", player)
+	
 	
 func register_level(new_level):
 	level = new_level

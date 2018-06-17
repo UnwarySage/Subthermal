@@ -2,11 +2,11 @@
 
 [ext_resource path="res://level/Main.gd" type="Script" id=1]
 [ext_resource path="res://entities/cannister/Cannister.tscn" type="PackedScene" id=2]
-[ext_resource path="res://entities/player/Ship.tscn" type="PackedScene" id=3]
-[ext_resource path="res://level/Spawner.gd" type="Script" id=4]
-[ext_resource path="res://entities/asteroid/AsteroidFactory.tscn" type="PackedScene" id=5]
-[ext_resource path="res://level/BarrageHandler.gd" type="Script" id=6]
-[ext_resource path="res://entities/reticule/Reticule.tscn" type="PackedScene" id=7]
+[ext_resource path="res://level/BarrageHandler.gd" type="Script" id=3]
+[ext_resource path="res://entities/reticule/Reticule.tscn" type="PackedScene" id=4]
+[ext_resource path="res://entities/player/Ship.tscn" type="PackedScene" id=5]
+[ext_resource path="res://level/Spawner.gd" type="Script" id=6]
+[ext_resource path="res://entities/asteroid/AsteroidFactory.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Curve2D" id=1]
 
@@ -23,19 +23,31 @@ screen_size = Vector2( 1024, 600 )
 cannister_scene = ExtResource( 2 )
 cannister_spawn_margin = 60
 
-[node name="LevelSweeper" type="Position2D" parent="." index="0"]
+[node name="BarrageHandler" type="Node2D" parent="." index="0"]
 
-[node name="Player" parent="." index="1" instance=ExtResource( 3 )]
+script = ExtResource( 3 )
+reticule_scene = ExtResource( 4 )
+
+[node name="BarrageTimer" type="Timer" parent="BarrageHandler" index="0"]
+
+process_mode = 1
+wait_time = 3.0
+one_shot = false
+autostart = false
+
+[node name="LevelSweeper" type="Position2D" parent="." index="1"]
+
+[node name="Player" parent="." index="2" instance=ExtResource( 5 )]
 
 position = Vector2( 539.047, 390.649 )
 stat_thruster_strength = 65.0
 
-[node name="SpawnBorder" type="Path2D" parent="." index="2"]
+[node name="SpawnBorder" type="Path2D" parent="." index="3"]
 
 curve = SubResource( 1 )
-script = ExtResource( 4 )
+script = ExtResource( 6 )
 cannister = ExtResource( 2 )
-asteroid = ExtResource( 5 )
+asteroid = ExtResource( 7 )
 
 [node name="SpawnLocation" type="PathFollow2D" parent="SpawnBorder" index="0"]
 
@@ -46,18 +58,6 @@ rotate = true
 cubic_interp = true
 loop = true
 lookahead = 4.0
-
-[node name="BarrageHandler" type="Node2D" parent="." index="3"]
-
-script = ExtResource( 6 )
-reticule_scene = ExtResource( 7 )
-
-[node name="BarrageTimer" type="Timer" parent="BarrageHandler" index="0"]
-
-process_mode = 1
-wait_time = 3.0
-one_shot = false
-autostart = false
 
 [connection signal="timeout" from="BarrageHandler/BarrageTimer" to="BarrageHandler" method="_on_BarrageTimer_timeout"]
 

@@ -4,11 +4,7 @@ var active_track = false
 var present_signature_pos = Vector2()
 var present_reticule = null
 export (PackedScene) var reticule_scene
-
-func _process(delta):
-	for present_node in get_tree().get_nodes_in_group("has_temperature"):
-		present_node.connect("overheated", self, "tracking")
-		present_node.remove_from_group("has_temperature")
+var player  = null
 
 func tracking(pos):
 	if(!active_track):
@@ -34,3 +30,14 @@ func _on_BarrageTimer_timeout():
 
 func _ready():
 	active_track = false
+	present_signature_pos = Vector2()
+	present_reticule = null
+	GAMEKEEPER.connect("new_player",self,"new_player")
+	
+func new_player(new):
+	new.connect("overheated", self, "tracking")
+	player = new
+	print("BarrageHandler: connected player: " + str(new))
+
+
+	
