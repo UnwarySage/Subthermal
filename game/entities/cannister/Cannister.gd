@@ -2,7 +2,7 @@ extends "res://entities/DriftingObject.gd"
 var disabled  = false
 
 func collect(collector):
-	SCOREKEEPER.adjust_score(15)
+	SCOREKEEPER.adjust_score(150)
 	disabled = true
 	self.queue_free()
 	collector.get_node("CollectSound").play()

@@ -115,10 +115,12 @@ func accept_damage(damage_amount):
 		dead = true
 		$DeathTimer.start()
 		$DeathSound.play()
+		
 
 
 func _on_DeathTimer_timeout():
-	GAMEKEEPER.new_level()
+	GAMEKEEPER.to_menu()
+	
 
 
 func _on_VisibilityNotifier2D_screen_exited():

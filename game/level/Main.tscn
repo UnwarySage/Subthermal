@@ -18,18 +18,18 @@ _data = {
 }
 _sections_unfolded = [ "Resource" ]
 
-[sub_resource type="Gradient" id=3]
+[sub_resource type="Gradient" id=2]
 
 offsets = PoolRealArray( 0, 0.0555556, 0.866013, 1 )
 colors = PoolColorArray( 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0.971264, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=4]
+[sub_resource type="GradientTexture" id=3]
 
 flags = 4
-gradient = SubResource( 3 )
+gradient = SubResource( 2 )
 width = 2048
 
-[sub_resource type="ParticlesMaterial" id=2]
+[sub_resource type="ParticlesMaterial" id=4]
 
 render_priority = 0
 trail_divisor = 1
@@ -59,7 +59,7 @@ angle = 0.0
 angle_random = 0.0
 scale = 1.0
 scale_random = 0.0
-color_ramp = SubResource( 4 )
+color_ramp = SubResource( 3 )
 hue_variation = 0.0
 hue_variation_random = 0.0
 anim_speed = 0.0
@@ -69,7 +69,7 @@ anim_offset_random = 1.0
 anim_loop = false
 _sections_unfolded = [ "Color", "Emission Shape" ]
 
-[node name="level" type="Node2D"]
+[node name="level" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 screen_size = Vector2( 1024, 600 )
@@ -145,7 +145,7 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = true
 draw_order = 0
-process_material = SubResource( 2 )
+process_material = SubResource( 4 )
 texture = ExtResource( 9 )
 normal_map = null
 h_frames = 7
