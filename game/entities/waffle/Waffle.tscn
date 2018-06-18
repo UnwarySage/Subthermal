@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://entities/waffle/Waffle.gd" type="Script" id=1]
 [ext_resource path="res://entities/waffle/waffle1.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://entities/waffle/waffle3.png" type="Texture" id=4]
 [ext_resource path="res://entities/waffle/waffle4.png" type="Texture" id=5]
 [ext_resource path="res://entities/waffle/waffle5.png" type="Texture" id=6]
+[ext_resource path="res://entities/light-blur.png" type="Texture" id=7]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -49,7 +50,7 @@ _sections_unfolded = [ "Collision", "Z Index" ]
 
 frames = SubResource( 1 )
 animation = "default"
-frame = 2
+frame = 3
 playing = true
 
 [node name="WaffleShape" type="CollisionShape2D" parent="." index="1"]
@@ -62,6 +63,30 @@ process_mode = 1
 wait_time = 1.5
 one_shot = false
 autostart = true
+
+[node name="Light" type="Light2D" parent="." index="3"]
+
+enabled = true
+editor_only = false
+texture = ExtResource( 7 )
+offset = Vector2( 0, 0 )
+texture_scale = 1.0
+color = Color( 0.90625, 0.518726, 0.106201, 1 )
+energy = 0.5
+mode = 0
+range_height = 0.0
+range_z_min = -1024
+range_z_max = 1024
+range_layer_min = 0
+range_layer_max = 0
+range_item_cull_mask = 1
+shadow_enabled = false
+shadow_color = Color( 0, 0, 0, 0 )
+shadow_buffer_size = 2048
+shadow_gradient_length = 0.0
+shadow_filter = 0
+shadow_filter_smooth = 0.0
+shadow_item_cull_mask = 1
 
 [connection signal="timeout" from="BurnTimer" to="." method="_on_BurnTimer_timeout"]
 

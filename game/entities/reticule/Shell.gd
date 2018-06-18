@@ -12,8 +12,10 @@ func detonate():
 	for target in affected:
 		if(target.is_in_group("player")):
 			target.accept_damage(1)
-		if(target.is_class("RigidBody2d")):
-			target.apply_impulse(Vector2(), self.global_position - target.global_position)
+		if(target.is_in_group("asteroid")):
+			target.queue_free()
+	
+		
 	$ExplosionSprite.visible = true
 	$ExplosionSprite.playing = true
 	$ExplosionSprite.rotation = rand_range(0, 2 *PI)

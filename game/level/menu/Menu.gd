@@ -44,7 +44,7 @@ func _display_scores():
 	for score in SCOREKEEPER.prev_scores:
 		var box = scorebox_scene.instance()
 		box.get_node("HiScoreName").text = ("RUN_" + str(index) + ":")
-		box.get_node("HiScoreDisplay").text = str(score)
+		box.get_node("HiScoreDisplay").text = str(score) + "K"
 		$CentralCollumn/ScoreContainer/ScoreScreen.add_child(box)
 		index += 1
 	

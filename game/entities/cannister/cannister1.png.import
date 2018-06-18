@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/asteroid2.png-76a7f85fdb7d1d12c216269c0cc61c08.stex"
+path="res://.import/cannister1.png-9871aa58a815a9c73cf0119f0340731e.stex"
 
 [deps]
 
-source_file="res://entities/asteroid/asteroid2.png"
-source_md5="c7d9dd0dedbdf834aa5516a6bfd12880"
+source_file="res://entities/cannister/cannister1.png"
+source_md5="7b63768cb4ed6617993571e22f2311c9"
 
-dest_files=[ "res://.import/asteroid2.png-76a7f85fdb7d1d12c216269c0cc61c08.stex" ]
-dest_md5="bb43951bf003f499706732d3182c3434"
+dest_files=[ "res://.import/cannister1.png-9871aa58a815a9c73cf0119f0340731e.stex" ]
+dest_md5="f519f4ba3528f9c8727f068a1638fcfe"
 
 [params]
 

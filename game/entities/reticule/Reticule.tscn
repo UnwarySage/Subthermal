@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://entities/reticule/Reticule.gd" type="Script" id=1]
 [ext_resource path="res://entities/reticule/Shell.tscn" type="PackedScene" id=2]
 [ext_resource path="res://entities/reticule/reticule.png" type="Texture" id=3]
 [ext_resource path="res://entities/reticule/lockon1.wav" type="AudioStream" id=4]
+[ext_resource path="res://entities/light-blur.png" type="Texture" id=5]
 
 [node name="ReticulePosition" type="Node2D"]
 
@@ -36,5 +37,29 @@ max_distance = 2000.0
 attenuation = 1.0
 bus = "Master"
 area_mask = 1
+
+[node name="Light2D" type="Light2D" parent="." index="4"]
+
+enabled = true
+editor_only = false
+texture = ExtResource( 5 )
+offset = Vector2( 0, 0 )
+texture_scale = 1.0
+color = Color( 0.851562, 0.529316, 0.0266113, 1 )
+energy = 2.0
+mode = 0
+range_height = 0.0
+range_z_min = -1024
+range_z_max = 1024
+range_layer_min = 0
+range_layer_max = 0
+range_item_cull_mask = 1
+shadow_enabled = false
+shadow_color = Color( 0, 0, 0, 0 )
+shadow_buffer_size = 2048
+shadow_gradient_length = 0.0
+shadow_filter = 0
+shadow_filter_smooth = 0.0
+shadow_item_cull_mask = 1
 
 

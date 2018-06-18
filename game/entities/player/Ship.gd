@@ -51,6 +51,7 @@ func _process(delta):
 	if (temperature > thermal_buffer * 3):
 		temperature = thermal_buffer * 3 
 	emit_signal("heat_updated", temperature)
+	$Light.energy = temperature / thermal_buffer
 	
 	#handle mass
 	if (stored_mass >= max_mass):
@@ -113,12 +114,10 @@ func fire_engine(strength):
 	if(!$EngineSound.playing):
 		$EngineSound.play()
 
-
 func fire_thruster(strength):
 	#expects a value from -1 to 1
 	self.angular_velocity += strength * thruster_strength / 500
 	
-
 func _on_ShipBody_body_entered(body):
 	#this should handle damage and collecting cannisters
 	if(body.is_in_group("cannister")):
@@ -138,13 +137,10 @@ func accept_damage(damage_amount):
 		dead = true
 		$DeathTimer.start()
 		$DeathSound.play()
-		
-
+		$Follower.visible = false
 
 func _on_DeathTimer_timeout():
 	GAMEKEEPER.to_menu()
 	
-
-
 func _on_VisibilityNotifier2D_screen_exited():
 	accept_damage(16)

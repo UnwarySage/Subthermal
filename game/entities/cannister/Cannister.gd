@@ -16,3 +16,5 @@ func _on_CannisterBody_body_entered(body):
 		self.applied_force = (self.global_position - body.global_position).normalized() * 128
 		
 
+func _physics_process(delta):
+	$Light.energy = $CannisterSprite.frame +.25

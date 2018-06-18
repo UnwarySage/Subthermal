@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://entities/player/Ship.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/HeatMesh.tscn" type="PackedScene" id=2]
@@ -23,6 +23,7 @@
 [ext_resource path="res://entities/player/engine_fire.wav" type="AudioStream" id=21]
 [ext_resource path="res://entities/player/fail_to_fire.wav" type="AudioStream" id=22]
 [ext_resource path="res://entities/player/fire.wav" type="AudioStream" id=23]
+[ext_resource path="res://entities/light-blur.png" type="Texture" id=24]
 
 [sub_resource type="SpriteFrames" id=8]
 
@@ -117,7 +118,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="ShipBody" type="RigidBody2D" index="0" groups=[
+[node name="ShipBody" type="RigidBody2D" groups=[
 "player",
 "has_temperature",
 "ship",
@@ -453,6 +454,30 @@ area_mask = 1
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="Light" type="Light2D" parent="." index="15"]
+
+enabled = true
+editor_only = false
+texture = ExtResource( 24 )
+offset = Vector2( 0, 0 )
+texture_scale = 1.0
+color = Color( 1, 1, 1, 1 )
+energy = 1.0
+mode = 0
+range_height = 0.0
+range_z_min = -1024
+range_z_max = 1024
+range_layer_min = 0
+range_layer_max = 0
+range_item_cull_mask = 1
+shadow_enabled = false
+shadow_color = Color( 0, 0, 0, 0 )
+shadow_buffer_size = 2048
+shadow_gradient_length = 0.0
+shadow_filter = 0
+shadow_filter_smooth = 0.0
+shadow_item_cull_mask = 1
 
 [connection signal="body_entered" from="." to="." method="_on_ShipBody_body_entered"]
 

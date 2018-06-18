@@ -63,7 +63,7 @@ autostart = true
 
 frames = SubResource( 1 )
 animation = "default"
-frame = 1
+frame = 3
 playing = true
 
 [node name="ExplosionArea" type="CollisionShape2D" parent="." index="2"]
