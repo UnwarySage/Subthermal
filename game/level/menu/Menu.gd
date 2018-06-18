@@ -31,7 +31,7 @@ func _on_HelpButton_pressed():
 
 func _on_ExitButton_pressed():
 	print("exiting")
-	SceneTree.quit()
+	get_tree().quit()
 
 func _on_CloseHelp_pressed():
 	$HelpScreen.visible = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://entities/player/Ship.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/HeatMesh.tscn" type="PackedScene" id=2]
@@ -19,6 +19,8 @@
 [ext_resource path="res://entities/player/death.wav" type="AudioStream" id=17]
 [ext_resource path="res://entities/player/pickup.wav" type="AudioStream" id=18]
 [ext_resource path="res://entities/player/engine_fire.wav" type="AudioStream" id=19]
+[ext_resource path="res://entities/player/fail_to_fire.wav" type="AudioStream" id=20]
+[ext_resource path="res://entities/player/fire.wav" type="AudioStream" id=21]
 
 [sub_resource type="SpriteFrames" id=8]
 
@@ -104,7 +106,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Color", "Emission Shape", "Flags", "Hue Variation", "Initial Velocity", "Linear Accel", "Spread" ]
 
-[node name="ShipBody" type="RigidBody2D" index="0" groups=[
+[node name="ShipBody" type="RigidBody2D" groups=[
 "player",
 "has_temperature",
 "ship",
@@ -388,6 +390,26 @@ area_mask = 1
 
 stream = ExtResource( 19 )
 volume_db = -15.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="ShootFailSound" type="AudioStreamPlayer2D" parent="." index="13"]
+
+stream = ExtResource( 20 )
+volume_db = 0.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="FireSound" type="AudioStreamPlayer2D" parent="." index="14"]
+
+stream = ExtResource( 21 )
+volume_db = 0.0
 autoplay = false
 max_distance = 2000.0
 attenuation = 1.0

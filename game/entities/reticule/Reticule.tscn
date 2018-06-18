@@ -5,7 +5,7 @@
 [ext_resource path="res://entities/reticule/reticule.png" type="Texture" id=3]
 [ext_resource path="res://entities/reticule/lockon1.wav" type="AudioStream" id=4]
 
-[node name="ReticulePosition" type="Node2D"]
+[node name="ReticulePosition" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 max_viz_distance = 120.0
@@ -30,7 +30,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="3"]
 
 stream = ExtResource( 4 )
-volume_db = 0.0
+volume_db = -3.0
 autoplay = true
 max_distance = 2000.0
 attenuation = 1.0

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/fail_to_fire.wav-a00517dfd6a3eee74d611c9907ca16cd.sample"
+
+[deps]
+
+source_file="res://entities/player/fail_to_fire.wav"
+source_md5="654adf48c140484b54b26a2bbd21e358"
+
+dest_files=[ "res://.import/fail_to_fire.wav-a00517dfd6a3eee74d611c9907ca16cd.sample" ]
+dest_md5="a83b8cdd7be980501270c96200c2b7c8"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

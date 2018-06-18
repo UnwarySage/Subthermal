@@ -96,10 +96,12 @@ func _physics_process(delta):
 			spawn.linear_velocity = Vector2(0,100).rotated(self.rotation)
 			stored_mass -= waffle_cost
 			emit_signal("mass_updated", stored_mass)
+			$FireSound.play()
 			if(temperature - waffle_temp > 0):
 				temperature -= waffle_temp
 			else: 
 				temperature =0
+				$ShootFailSound.play()
 
 
 func fire_engine(strength):
