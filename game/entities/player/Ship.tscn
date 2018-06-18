@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://entities/player/Ship.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/HeatMesh.tscn" type="PackedScene" id=2]
@@ -15,12 +15,14 @@
 [ext_resource path="res://entities/player/ship_ui_background.png" type="Texture" id=13]
 [ext_resource path="res://entities/player/temperature_gauge_outer.png" type="Texture" id=14]
 [ext_resource path="res://entities/player/temperature_gauge_inner.png" type="Texture" id=15]
-[ext_resource path="res://entities/player/impact1.wav" type="AudioStream" id=16]
-[ext_resource path="res://entities/player/death.wav" type="AudioStream" id=17]
-[ext_resource path="res://entities/player/pickup.wav" type="AudioStream" id=18]
-[ext_resource path="res://entities/player/engine_fire.wav" type="AudioStream" id=19]
-[ext_resource path="res://entities/player/fail_to_fire.wav" type="AudioStream" id=20]
-[ext_resource path="res://entities/player/fire.wav" type="AudioStream" id=21]
+[ext_resource path="res://entities/player/ship_ui_icons2.png" type="Texture" id=16]
+[ext_resource path="res://entities/player/ship_ui_icons3.png" type="Texture" id=17]
+[ext_resource path="res://entities/player/impact1.wav" type="AudioStream" id=18]
+[ext_resource path="res://entities/player/death.wav" type="AudioStream" id=19]
+[ext_resource path="res://entities/player/pickup.wav" type="AudioStream" id=20]
+[ext_resource path="res://entities/player/engine_fire.wav" type="AudioStream" id=21]
+[ext_resource path="res://entities/player/fail_to_fire.wav" type="AudioStream" id=22]
+[ext_resource path="res://entities/player/fire.wav" type="AudioStream" id=23]
 
 [sub_resource type="SpriteFrames" id=8]
 
@@ -106,7 +108,16 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Color", "Emission Shape", "Flags", "Hue Variation", "Initial Velocity", "Linear Accel", "Spread" ]
 
-[node name="ShipBody" type="RigidBody2D" groups=[
+[sub_resource type="SpriteFrames" id=9]
+
+animations = [ {
+"frames": [ ExtResource( 16 ), ExtResource( 17 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="ShipBody" type="RigidBody2D" index="0" groups=[
 "player",
 "has_temperature",
 "ship",
@@ -198,11 +209,12 @@ _sections_unfolded = [ "Visibility", "Z Index" ]
 
 [node name="HUD" type="VBoxContainer" parent="Follower" index="0"]
 
+editor/display_folded = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -78.0
+margin_left = -77.0
 margin_top = -62.0
 margin_right = 58.0
 margin_bottom = 70.0
@@ -215,7 +227,8 @@ alignment = 0
 script = ExtResource( 9 )
 _sections_unfolded = [ "Anchor", "Margin" ]
 __meta__ = {
-"_edit_group_": true
+"_edit_group_": true,
+"_edit_lock_": true
 }
 
 [node name="LifeContainer" type="HBoxContainer" parent="Follower/HUD" index="0"]
@@ -224,7 +237,7 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 136.0
+margin_right = 135.0
 margin_bottom = 16.0
 rect_pivot_offset = Vector2( 0, 0 )
 mouse_filter = 1
@@ -232,7 +245,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 1
-_sections_unfolded = [ "Grow Direction", "Margin" ]
+_sections_unfolded = [ "Grow Direction", "Margin", "Rect" ]
 
 [node name="LifeIcon" type="TextureRect" parent="Follower/HUD/LifeContainer" index="0"]
 
@@ -240,8 +253,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 60.0
-margin_right = 76.0
+margin_left = 59.0
+margin_right = 75.0
 margin_bottom = 16.0
 rect_pivot_offset = Vector2( 0, 0 )
 mouse_filter = 1
@@ -258,7 +271,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 20.0
-margin_right = 136.0
+margin_right = 135.0
 margin_bottom = 84.0
 rect_pivot_offset = Vector2( 0, 0 )
 mouse_filter = 1
@@ -274,8 +287,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 17.0
-margin_right = 32.0
+margin_left = 16.0
+margin_right = 31.0
 margin_bottom = 64.0
 rect_pivot_offset = Vector2( 0, 0 )
 mouse_filter = 0
@@ -304,8 +317,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 36.0
-margin_right = 100.0
+margin_left = 35.0
+margin_right = 99.0
 margin_bottom = 64.0
 rect_pivot_offset = Vector2( 0, 0 )
 mouse_filter = 1
@@ -321,8 +334,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 104.0
-margin_right = 119.0
+margin_left = 103.0
+margin_right = 118.0
 margin_bottom = 64.0
 rect_pivot_offset = Vector2( 0, 0 )
 mouse_filter = 0
@@ -345,6 +358,13 @@ radial_center_offset = Vector2( 0, 0 )
 nine_patch_stretch = false
 _sections_unfolded = [ "Anchor", "Margin", "Rect", "Textures" ]
 
+[node name="WaffleReadyIcon" type="AnimatedSprite" parent="Follower" index="1"]
+
+position = Vector2( -30, -25 )
+frames = SubResource( 9 )
+animation = "default"
+_sections_unfolded = [ "Transform" ]
+
 [node name="DeathTimer" type="Timer" parent="." index="7"]
 
 process_mode = 1
@@ -358,26 +378,6 @@ rect = Rect2( -10, -10, 20, 20 )
 
 [node name="HitSound" type="AudioStreamPlayer2D" parent="." index="9"]
 
-stream = ExtResource( 16 )
-volume_db = 0.0
-autoplay = false
-max_distance = 2000.0
-attenuation = 1.0
-bus = "Master"
-area_mask = 1
-
-[node name="DeathSound" type="AudioStreamPlayer2D" parent="." index="10"]
-
-stream = ExtResource( 17 )
-volume_db = 0.0
-autoplay = false
-max_distance = 2000.0
-attenuation = 1.0
-bus = "Master"
-area_mask = 1
-
-[node name="CollectSound" type="AudioStreamPlayer2D" parent="." index="11"]
-
 stream = ExtResource( 18 )
 volume_db = 0.0
 autoplay = false
@@ -385,18 +385,24 @@ max_distance = 2000.0
 attenuation = 1.0
 bus = "Master"
 area_mask = 1
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="EngineSound" type="AudioStreamPlayer2D" parent="." index="12"]
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="." index="10"]
 
 stream = ExtResource( 19 )
-volume_db = -15.0
+volume_db = 0.0
 autoplay = false
 max_distance = 2000.0
 attenuation = 1.0
 bus = "Master"
 area_mask = 1
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="ShootFailSound" type="AudioStreamPlayer2D" parent="." index="13"]
+[node name="CollectSound" type="AudioStreamPlayer2D" parent="." index="11"]
 
 stream = ExtResource( 20 )
 volume_db = 0.0
@@ -405,16 +411,48 @@ max_distance = 2000.0
 attenuation = 1.0
 bus = "Master"
 area_mask = 1
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="FireSound" type="AudioStreamPlayer2D" parent="." index="14"]
+[node name="EngineSound" type="AudioStreamPlayer2D" parent="." index="12"]
 
 stream = ExtResource( 21 )
+volume_db = -15.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ShootFailSound" type="AudioStreamPlayer2D" parent="." index="13"]
+
+stream = ExtResource( 22 )
 volume_db = 0.0
 autoplay = false
 max_distance = 2000.0
 attenuation = 1.0
 bus = "Master"
 area_mask = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="FireSound" type="AudioStreamPlayer2D" parent="." index="14"]
+
+stream = ExtResource( 23 )
+volume_db = 0.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+__meta__ = {
+"_edit_lock_": true
+}
 
 [connection signal="body_entered" from="." to="." method="_on_ShipBody_body_entered"]
 

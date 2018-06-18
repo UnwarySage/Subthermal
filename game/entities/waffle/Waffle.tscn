@@ -49,7 +49,7 @@ _sections_unfolded = [ "Collision", "Z Index" ]
 
 frames = SubResource( 1 )
 animation = "default"
-frame = 4
+frame = 2
 playing = true
 
 [node name="WaffleShape" type="CollisionShape2D" parent="." index="1"]

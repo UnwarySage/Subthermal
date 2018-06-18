@@ -1,14 +1,32 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://level/menu/Menu.gd" type="Script" id=1]
-[ext_resource path="res://level/menu/ScoreBox.tscn" type="PackedScene" id=2]
-[ext_resource path="res://level/menu/frame.png" type="Texture" id=3]
-[ext_resource path="res://entities/player/ship.png" type="Texture" id=4]
-[ext_resource path="res://level/menu/button_hollow.png" type="Texture" id=5]
-[ext_resource path="res://level/menu/button_full.png" type="Texture" id=6]
-[ext_resource path="res://level/menu/button_focussed.png" type="Texture" id=7]
+[ext_resource path="res://level/menu/menu_background.png" type="Texture" id=1]
+[ext_resource path="res://level/menu/Menu.gd" type="Script" id=2]
+[ext_resource path="res://level/menu/ScoreBox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://level/menu/frame.png" type="Texture" id=4]
+[ext_resource path="res://entities/player/ship.png" type="Texture" id=5]
+[ext_resource path="res://level/menu/button_hollow.png" type="Texture" id=6]
+[ext_resource path="res://level/menu/button_full.png" type="Texture" id=7]
+[ext_resource path="res://level/menu/button_focussed.png" type="Texture" id=8]
 
-[node name="HBoxContainer" type="HBoxContainer"]
+[node name="HBoxContainer" type="TextureRect"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 1 )
+stretch_mode = 2
+script = ExtResource( 2 )
+_sections_unfolded = [ "Margin" ]
+scorebox_scene = ExtResource( 3 )
+
+[node name="CentralCollumn" type="HBoxContainer" parent="." index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -20,11 +38,8 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 1
-script = ExtResource( 1 )
-_sections_unfolded = [ "Margin" ]
-scorebox_scene = ExtResource( 2 )
 
-[node name="ScoreContainer" type="MarginContainer" parent="." index="0"]
+[node name="ScoreContainer" type="MarginContainer" parent="CentralCollumn" index="0"]
 
 editor/display_folded = true
 visible = false
@@ -32,8 +47,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 292.0
-margin_right = 600.0
+margin_left = 287.0
+margin_right = 595.0
 margin_bottom = 600.0
 rect_pivot_offset = Vector2( 0, 0 )
 mouse_filter = 0
@@ -42,8 +57,9 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 _sections_unfolded = [ "Anchor", "Margin" ]
 
-[node name="ScoreScreen" type="VBoxContainer" parent="ScoreContainer" index="0"]
+[node name="ScoreScreen" type="VBoxContainer" parent="CentralCollumn/ScoreContainer" index="0"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -60,9 +76,9 @@ size_flags_vertical = 1
 alignment = 0
 _sections_unfolded = [ "Anchor", "Margin", "Rect" ]
 
-[node name="HiScoreBox" parent="ScoreContainer/ScoreScreen" index="0" instance=ExtResource( 2 )]
+[node name="HiScoreBox" parent="CentralCollumn/ScoreContainer/ScoreScreen" index="0" instance=ExtResource( 3 )]
 
-[node name="YourScoreBox" type="HBoxContainer" parent="ScoreContainer/ScoreScreen" index="1"]
+[node name="YourScoreBox" type="HBoxContainer" parent="CentralCollumn/ScoreContainer/ScoreScreen" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -78,7 +94,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 1
 
-[node name="HiScoreName" type="Label" parent="ScoreContainer/ScoreScreen/YourScoreBox" index="0"]
+[node name="HiScoreName" type="Label" parent="CentralCollumn/ScoreContainer/ScoreScreen/YourScoreBox" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -97,7 +113,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="HiScoreDisplay" type="Label" parent="ScoreContainer/ScoreScreen/YourScoreBox" index="1"]
+[node name="HiScoreDisplay" type="Label" parent="CentralCollumn/ScoreContainer/ScoreScreen/YourScoreBox" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -116,7 +132,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="HSeparator" type="HSeparator" parent="ScoreContainer/ScoreScreen" index="2"]
+[node name="HSeparator" type="HSeparator" parent="CentralCollumn/ScoreContainer/ScoreScreen" index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -131,8 +147,9 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 
-[node name="MainMenu" type="VBoxContainer" parent="." index="1"]
+[node name="MainMenu" type="VBoxContainer" parent="CentralCollumn" index="1"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -148,7 +165,7 @@ size_flags_vertical = 1
 alignment = 0
 _sections_unfolded = [ "Margin" ]
 
-[node name="CenterContainer" type="CenterContainer" parent="MainMenu" index="0"]
+[node name="CenterContainer" type="CenterContainer" parent="CentralCollumn/MainMenu" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -163,7 +180,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 use_top_left = false
 
-[node name="TextureRect" type="TextureRect" parent="MainMenu/CenterContainer" index="0"]
+[node name="TextureRect" type="TextureRect" parent="CentralCollumn/MainMenu/CenterContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -177,10 +194,10 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 stretch_mode = 0
 
-[node name="ship" type="TextureRect" parent="MainMenu/CenterContainer/TextureRect" index="0"]
+[node name="ship" type="TextureRect" parent="CentralCollumn/MainMenu/CenterContainer/TextureRect" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -195,17 +212,17 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 stretch_mode = 0
 
-[node name="PresentScoreBox" parent="MainMenu" index="1" instance=ExtResource( 2 )]
+[node name="PresentScoreBox" parent="CentralCollumn/MainMenu" index="1" instance=ExtResource( 3 )]
 
 margin_top = 132.0
 margin_right = 138.0
 margin_bottom = 146.0
 _sections_unfolded = [ "Focus" ]
 
-[node name="NextLevelButton" type="TextureButton" parent="MainMenu" index="2"]
+[node name="NextLevelButton" type="TextureButton" parent="CentralCollumn/MainMenu" index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -225,11 +242,11 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-texture_normal = ExtResource( 5 )
-texture_hover = ExtResource( 6 )
+texture_normal = ExtResource( 6 )
+texture_hover = ExtResource( 7 )
 _sections_unfolded = [ "Focus" ]
 
-[node name="Label" type="Label" parent="MainMenu/NextLevelButton" index="0"]
+[node name="Label" type="Label" parent="CentralCollumn/MainMenu/NextLevelButton" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -247,7 +264,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="RetireButton" type="TextureButton" parent="MainMenu" index="3"]
+[node name="RetireButton" type="TextureButton" parent="CentralCollumn/MainMenu" index="3"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -268,11 +285,11 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-texture_normal = ExtResource( 5 )
-texture_hover = ExtResource( 6 )
+texture_normal = ExtResource( 6 )
+texture_hover = ExtResource( 7 )
 _sections_unfolded = [ "Focus", "Textures" ]
 
-[node name="Label2" type="Label" parent="MainMenu/RetireButton" index="0"]
+[node name="Label2" type="Label" parent="CentralCollumn/MainMenu/RetireButton" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -294,7 +311,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="HelpButton" type="TextureButton" parent="MainMenu" index="4"]
+[node name="HelpButton" type="TextureButton" parent="CentralCollumn/MainMenu" index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -315,11 +332,11 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-texture_normal = ExtResource( 5 )
-texture_hover = ExtResource( 6 )
+texture_normal = ExtResource( 6 )
+texture_hover = ExtResource( 7 )
 _sections_unfolded = [ "Focus", "Textures" ]
 
-[node name="Label3" type="Label" parent="MainMenu/HelpButton" index="0"]
+[node name="Label3" type="Label" parent="CentralCollumn/MainMenu/HelpButton" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -341,7 +358,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="ExitButton" type="TextureButton" parent="MainMenu" index="5"]
+[node name="ExitButton" type="TextureButton" parent="CentralCollumn/MainMenu" index="5"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -362,12 +379,12 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-texture_normal = ExtResource( 5 )
-texture_hover = ExtResource( 6 )
-texture_focused = ExtResource( 7 )
+texture_normal = ExtResource( 6 )
+texture_hover = ExtResource( 7 )
+texture_focused = ExtResource( 8 )
 _sections_unfolded = [ "Textures" ]
 
-[node name="Label2" type="Label" parent="MainMenu/ExitButton" index="0"]
+[node name="Label2" type="Label" parent="CentralCollumn/MainMenu/ExitButton" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -387,7 +404,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="HelpScreen" type="MarginContainer" parent="." index="2"]
+[node name="HelpScreen" type="MarginContainer" parent="CentralCollumn" index="2"]
 
 editor/display_folded = true
 visible = false
@@ -395,9 +412,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 218.0
-margin_right = 943.0
-margin_bottom = 600.0
+margin_left = 454.0
+margin_right = 1179.0
+margin_bottom = 541.0
 rect_pivot_offset = Vector2( 0, 0 )
 mouse_filter = 0
 mouse_default_cursor_shape = 0
@@ -405,7 +422,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 _sections_unfolded = [ "Anchor", "Margin" ]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HelpScreen" index="0"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CentralCollumn/HelpScreen" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -413,7 +430,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 8.0
 margin_right = 725.0
-margin_bottom = 600.0
+margin_bottom = 541.0
 rect_pivot_offset = Vector2( 0, 0 )
 mouse_filter = 1
 mouse_default_cursor_shape = 0
@@ -421,7 +438,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
 
-[node name="HelpText" type="Label" parent="HelpScreen/VBoxContainer" index="0"]
+[node name="HelpText" type="Label" parent="CentralCollumn/HelpScreen/VBoxContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -467,7 +484,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Margin" ]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HelpScreen/VBoxContainer" index="1"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CentralCollumn/HelpScreen/VBoxContainer" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -483,7 +500,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
 
-[node name="CloseHelp" type="TextureButton" parent="HelpScreen/VBoxContainer/HBoxContainer" index="0"]
+[node name="CloseHelp" type="TextureButton" parent="CentralCollumn/HelpScreen/VBoxContainer/HBoxContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -501,11 +518,11 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-texture_normal = ExtResource( 5 )
-texture_hover = ExtResource( 6 )
+texture_normal = ExtResource( 6 )
+texture_hover = ExtResource( 7 )
 _sections_unfolded = [ "Textures" ]
 
-[node name="Label" type="Label" parent="HelpScreen/VBoxContainer/HBoxContainer/CloseHelp" index="0"]
+[node name="Label" type="Label" parent="CentralCollumn/HelpScreen/VBoxContainer/HBoxContainer/CloseHelp" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -527,14 +544,12 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[connection signal="pressed" from="MainMenu/NextLevelButton" to="." method="_on_NextLevelButton_pressed"]
+[connection signal="pressed" from="CentralCollumn/MainMenu/NextLevelButton" to="." method="_on_NextLevelButton_pressed"]
 
-[connection signal="pressed" from="MainMenu/RetireButton" to="." method="_on_RetireButton_pressed"]
+[connection signal="pressed" from="CentralCollumn/MainMenu/RetireButton" to="." method="_on_RetireButton_pressed"]
 
-[connection signal="pressed" from="MainMenu/HelpButton" to="." method="_on_HelpButton_pressed"]
+[connection signal="pressed" from="CentralCollumn/MainMenu/HelpButton" to="." method="_on_HelpButton_pressed"]
 
-[connection signal="pressed" from="MainMenu/ExitButton" to="." method="_on_ExitButton_pressed"]
-
-[connection signal="pressed" from="HelpScreen/VBoxContainer/HBoxContainer/CloseHelp" to="." method="_on_CloseHelp_pressed"]
+[connection signal="pressed" from="CentralCollumn/MainMenu/ExitButton" to="." method="_on_ExitButton_pressed"]
 
 

@@ -37,8 +37,10 @@ func _ready():
 	$EngineTarget.position.y = -engine_strength
 	$ThrusterTarget.position.x = thruster_strength
 	GAMEKEEPER.register_player(self)
+	$Follower/HUD.player = self
 	emit_signal("life_updated", max_health-damage)
 	emit_signal("mass_updated", stored_mass)
+
 	print("ship spawned")
 	
 func _process(delta):
