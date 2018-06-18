@@ -7,8 +7,8 @@
 [ext_resource path="res://entities/player/Ship.tscn" type="PackedScene" id=5]
 [ext_resource path="res://level/Spawner.gd" type="Script" id=6]
 [ext_resource path="res://entities/asteroid/AsteroidFactory.tscn" type="PackedScene" id=7]
-[ext_resource path="res://level/background.png" type="Texture" id=8]
-[ext_resource path="res://level/back_stars.png" type="Texture" id=9]
+[ext_resource path="res://level/back_stars.png" type="Texture" id=8]
+[ext_resource path="res://level/background.png" type="Texture" id=9]
 
 [sub_resource type="Curve2D" id=1]
 
@@ -69,7 +69,7 @@ anim_offset_random = 1.0
 anim_loop = false
 _sections_unfolded = [ "Color", "Emission Shape" ]
 
-[node name="level" type="Node2D" index="0"]
+[node name="level" type="Node2D"]
 
 script = ExtResource( 1 )
 screen_size = Vector2( 1024, 600 )
@@ -112,26 +112,9 @@ cubic_interp = true
 loop = true
 lookahead = 4.0
 
-[node name="Background" type="Sprite" parent="." index="4"]
+[node name="StarParticles" type="Particles2D" parent="SpawnBorder" index="1"]
 
-position = Vector2( 350, 310 )
-z_index = -10
-texture = ExtResource( 8 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 1000, 1000 )
-_sections_unfolded = [ "Region", "Transform" ]
-
-[node name="Background2" type="Sprite" parent="Background" index="0"]
-
-position = Vector2( 350, -10 )
-z_index = -10
-texture = ExtResource( 8 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 1000, 1000 )
-_sections_unfolded = [ "Region", "Transform" ]
-
-[node name="StarParticles" type="Particles2D" parent="Background/Background2" index="0"]
-
+position = Vector2( 180, 300 )
 emitting = true
 amount = 600
 lifetime = 60.0
@@ -146,11 +129,29 @@ visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = true
 draw_order = 0
 process_material = SubResource( 4 )
-texture = ExtResource( 9 )
+texture = ExtResource( 8 )
 normal_map = null
 h_frames = 7
 v_frames = 1
-_sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time" ]
+_sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time", "Transform" ]
+
+[node name="Background" type="Sprite" parent="." index="4"]
+
+position = Vector2( 350, 310 )
+z_index = -10
+texture = ExtResource( 9 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1000, 1000 )
+_sections_unfolded = [ "Region", "Transform" ]
+
+[node name="Background2" type="Sprite" parent="Background" index="0"]
+
+position = Vector2( 350, -10 )
+z_index = -10
+texture = ExtResource( 9 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1000, 1000 )
+_sections_unfolded = [ "Region", "Transform" ]
 
 [connection signal="timeout" from="BarrageHandler/BarrageTimer" to="BarrageHandler" method="_on_BarrageTimer_timeout"]
 

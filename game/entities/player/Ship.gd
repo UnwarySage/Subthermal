@@ -1,12 +1,15 @@
 extends RigidBody2D
 
 export (PackedScene) var heat_mesh_scene
+export (PackedScene) var waffle_scene
 export (float) var stat_engine_strength
 export (float) var stat_engine_heat
 export (float) var stat_thruster_strength
 export (float) var stat_thermal_buffer
 export (float) var stat_thermal_bleed_rate
 export (float) var stat_max_mass
+export (float) var stat_waffle_cost
+export (float) var stat_waffle_temp
 export (int) var stat_max_health
 
 onready var engine_strength = stat_engine_strength
@@ -16,11 +19,13 @@ onready var thermal_buffer = stat_thermal_buffer
 onready var thermal_bleed_rate = stat_thermal_bleed_rate
 onready var max_health = stat_max_health
 onready var max_mass = stat_max_mass
+onready var waffle_cost = stat_waffle_cost
+onready var waffle_temp = stat_waffle_temp
 onready var temperature = 0
 onready var damage = 0
 onready var immobile = false
 onready var dead = false
-onready var stored_mass = 0
+onready var stored_mass = 15
 
 signal overheated
 signal heat_updated
@@ -40,7 +45,7 @@ func _process(delta):
 	if (temperature > 0):
 		temperature -= thermal_bleed_rate
 	if (temperature > thermal_buffer):
-		emit_signal("overheated", self.global_position)
+		GAMEKEEPER.barrage.init_tracking(self)
 	if (temperature > thermal_buffer * 3):
 		temperature = thermal_buffer * 3 
 	emit_signal("heat_updated", temperature)
@@ -82,6 +87,19 @@ func _physics_process(delta):
 		var spawn = heat_mesh_scene.instance()
 		self.add_child(spawn)
 		spawn.player = self
+	#handle firing off waffle
+	if(Input.is_action_just_pressed("player_fire_waffle")):
+		if(stored_mass > waffle_cost):
+			var spawn = waffle_scene.instance()
+			self.get_parent().add_child(spawn)
+			spawn.global_position = self.global_position
+			spawn.linear_velocity = Vector2(0,100).rotated(self.rotation)
+			stored_mass -= waffle_cost
+			emit_signal("mass_updated", stored_mass)
+			if(temperature - waffle_temp > 0):
+				temperature -= waffle_temp
+			else: 
+				temperature =0
 
 
 func fire_engine(strength):

@@ -4,6 +4,14 @@ export (PackedScene) var scorebox_scene
 
 var lain_low = false
 
+func _ready():
+	if(SCOREKEEPER.present_score != 0):
+		$MainMenu/PresentScoreBox/HiScoreDisplay.text = str(SCOREKEEPER.present_score)
+		$MainMenu/PresentScoreBox.visible = true
+	else:
+		$MainMenu/PresentScoreBox.visible = false
+	$MainMenu/NextLevelButton.grab_focus()
+		
 func _on_NextLevelButton_pressed():
 	GAMEKEEPER.enabled = true
 	GAMEKEEPER.new_level()

@@ -6,18 +6,17 @@ export (PackedScene) var shell_scene
 export var lock_rate = 0.05
 var present_lock = 0
 var target_velocity = null
+var target_node
+var handler 
 
 func _ready():
 	_set_diameter(max_viz_distance)
-	
 
-func increment_lock():
+func tighten_lock():
 	present_lock += lock_rate
 	_set_diameter(1/present_lock * max_viz_distance)
-	if(GAMEKEEPER.player != null):
-		target_velocity = GAMEKEEPER.player.linear_velocity 
-
- 
+	target_velocity = target_node.linear_velocity
+	self.global_position = target_node.global_position
 
 func _set_diameter(diam):
 	$Reticule.position.y = -diam

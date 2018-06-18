@@ -9,6 +9,7 @@ var spawner = null
 var player = null
 var gate = null
 var level = null
+var barrage = null
 signal new_player
 var enabled = false
 
@@ -31,10 +32,13 @@ func register_player(new_player):
 	print("GAMEKEEPER: player registered")
 	emit_signal("new_player", player)
 	
-	
 func register_level(new_level):
 	level = new_level
 	print("GAMEKEEPER: level registered")
+
+func register_barrage(new_barrage):
+	barrage = new_barrage
+	print("GAMEKEEPER: barrage registered")
 	
 func new_level():
 	#gets the present level, deletes it and then reinstances it
