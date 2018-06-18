@@ -23,6 +23,7 @@ radius = 3.0
 
 [node name="WaffleBody" type="RigidBody2D"]
 
+z_index = -2
 input_pickable = false
 collision_layer = 1
 collision_mask = 2
@@ -42,13 +43,13 @@ linear_damp = -1.0
 angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision" ]
+_sections_unfolded = [ "Collision", "Z Index" ]
 
 [node name="WaffleSprite" type="AnimatedSprite" parent="." index="0"]
 
 frames = SubResource( 1 )
 animation = "default"
-frame = 4
+frame = 2
 playing = true
 
 [node name="WaffleShape" type="CollisionShape2D" parent="." index="1"]

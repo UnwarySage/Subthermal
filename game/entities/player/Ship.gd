@@ -128,6 +128,7 @@ func accept_damage(damage_amount):
 	damage += damage_amount
 	emit_signal("life_updated", max_health-damage)
 	$HitSound.play()
+	$ShipSprite.frame = damage
 	if (damage >= max_health and !dead):
 		emit_signal("player_died")
 		dead = true
